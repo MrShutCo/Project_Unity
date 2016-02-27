@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 
 public enum TileType { Empty, Floor, Wall };
@@ -28,6 +27,7 @@ public class Tile {
 
     // The function we callback any time our tile's data changes
     Action<Tile> cbTileChanged;
+
 
     /// <summary>
 	/// Initializes a new instance of the <see cref="Tile"/> class.

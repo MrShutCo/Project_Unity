@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class TileSpriteController : MonoBehaviour {
@@ -18,6 +17,13 @@ public class TileSpriteController : MonoBehaviour {
     void Start() {
         tileGameObjectMap = new Dictionary<Tile, GameObject>();
 
+        GenerateWorld();
+
+        world.RegisterTileChanged(OnTileChanged);
+        LoadLevel();
+    }
+
+    void GenerateWorld() {
         for (int x = 0; x < world.Width; x++) {
             for (int y = 0; y < world.Height; y++) {
                 Tile tile_data = world.GetTileAt(x, y);
@@ -35,18 +41,9 @@ public class TileSpriteController : MonoBehaviour {
                 //sr.sortingLayerName = "Tiles";
             }
         }
-        world.RegisterTileChanged(OnTileChanged);
-        LoadLevel();
-    }
-
-    // Update is called once per frame
-    void Update() {
-
     }
 
     void OnTileChanged(Tile tile_data) {
-
-
         if (tileGameObjectMap.ContainsKey(tile_data) == false) {
             Debug.LogError("tileGameObjectMap doesn't contain the tile_data -- did you forget to add the tile to the dictionary? Or maybe forget to unregister a callback?");
             return;
@@ -72,14 +69,13 @@ public class TileSpriteController : MonoBehaviour {
             Debug.LogError("OnTileTypeChanged - Unrecognized tile type.");
         }
 
-
     }
 
     void LoadLevel() {
 
         Debug.Log("SetupPathfindingExample");
 
-        // Make a set of floors/walls to test pathfinding with.
+        // TODO: Make a set of floors/walls to test pathfinding with.
 
         int l = world.Width / 2 - 5;
         int b = world.Height / 2 - 5;

@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class WorldController : MonoBehaviour {
 
-    public static WorldController Instance { get; protected set; }
+    public static WorldController Instance { get; protected set; }  // singleton
 
-    // The world and tile data
-    public World world { get; protected set; }
+    public World world { get; protected set; }  // The world and tile data
+
 
     // Use this for initialization
     void OnEnable() {
@@ -20,16 +19,6 @@ public class WorldController : MonoBehaviour {
 
         // Center the Camera
         Camera.main.transform.position = new Vector3(world.Width / 2, world.Height / 2, Camera.main.transform.position.z);
-    }
-
-    // Use this for initialization
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
     }
 
     public Tile GetTileAtWorldCoord(Vector3 coord) {

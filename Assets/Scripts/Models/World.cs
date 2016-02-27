@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System;
 
 public class World {
 
     public Tile[,] tiles;
 
-    // The tile width of the world.
-    public int Width { get; protected set; }
-
-    // The tile height of the world
-    public int Height { get; protected set; }
+    public int Width { get; protected set; }    // The tile width of the world.
+    public int Height { get; protected set; }   // The tile height of the world
 
     Action<Tile> cbTileChanged;
+
 
     public World(int width = 100, int height = 100) {
         Width = width;
@@ -56,9 +52,4 @@ public class World {
         }
         return tiles[x, y];
     }
-
-   
-
-
-
 }
